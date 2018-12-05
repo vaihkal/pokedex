@@ -1,0 +1,74 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- Name Foto -->
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Foto</th>
+      <td mat-cell *matCellDef="let row">
+        <!--<img style="width: 100px; height: 100px;" src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{row.id | number:'3.0'}}.png">-->
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{row.id}}.png">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="imageshiny">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Chaining</th>
+      <td mat-cell *matCellDef="let row">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/{{row.id}}.png">
+      </td>
+    </ng-container>
+
+    <!-- Name species -->
+    <ng-container matColumnDef="species">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Especies</th>
+      <td mat-cell *matCellDef="let row">{{row.species}}</td>
+    </ng-container>    
+
+    <!-- Name type -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
+      <td mat-cell *matCellDef="let row">{{row.type.join(', ')}}</td>
+    </ng-container>  
+
+    <!-- Name height -->
+    <ng-container matColumnDef="height">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Altura</th>
+      <td mat-cell *matCellDef="let row">{{row.theight}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Peso</th>
+      <td mat-cell *matCellDef="let row">{{row.weight}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="abilities">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Habilidades</th>
+      <td mat-cell *matCellDef="let row">{{row.abilities.join(', ')}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="evolution">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Evolcion</th>
+      <td mat-cell *matCellDef="let row">{{row.evolution.join(', ')}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource.data.length"
+      [pageIndex]="0"
+      [pageSize]="25"
+      [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
+</div>
